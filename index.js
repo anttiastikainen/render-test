@@ -1,6 +1,22 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const cors = require('cors')
+
+/*
+const url =
+`mongodb+srv://anttiastikainen:i1ZHuG4kdRtTbovJ@cluster0.mfhdgnh.mongodb.net/noteApp?retryWrites=true&w=majority` 
+
+
+mongoose.set('strictQuery', false)
+mongoose.connect(url)
+
+const noteSchema = new mongoose.Schema({
+  content: String,
+  important: Boolean,
+})
+*/
+const Note =require('./models/note')
 
 app.use(cors())
 app.use(express.static('build'))
@@ -40,8 +56,10 @@ app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>')
 })
 
-app.get('/api/notes', (req, res) => {
-    res.json(notes)
+app.get('/api/notes', (request, response) => {
+    Note.find({}).then(notes => {
+        response.json(notes)
+    })
 })
 
 app.get('/api/notes/:id', (request, response) => {
