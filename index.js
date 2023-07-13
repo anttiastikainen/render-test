@@ -2,20 +2,6 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const cors = require('cors')
-
-/*
-const url =
-`mongodb+srv://anttiastikainen:i1ZHuG4kdRtTbovJ@cluster0.mfhdgnh.mongodb.net/noteApp?retryWrites=true&w=majority` 
-
-
-mongoose.set('strictQuery', false)
-mongoose.connect(url)
-
-const noteSchema = new mongoose.Schema({
-  content: String,
-  important: Boolean,
-})
-*/
 const Note =require('./models/note')
 
 app.use(cors())
